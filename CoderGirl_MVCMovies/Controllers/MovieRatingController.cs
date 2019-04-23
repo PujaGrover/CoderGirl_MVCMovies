@@ -13,6 +13,38 @@ namespace CoderGirl_MVCMovies.Controllers
             return View();
         }
 
+        
+        string htmlForm = @"
+          <form method='post'>
+            <input name='movieName' />
+            <select name='rating'>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <button type='submit'>Submit Rating</button>
+          </form>";
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return Content(htmlForm, "text/html");
+        }
+
+        [HttpPost]
+        public IActionResult Create(string movieName, string rating)
+        {
+            return RedirectToAction(actionName: nameof(Details), routeValues: new { movieName, rating });
+        }
+
+        [HttpGet]
+        public IActionResult Details(string movieName, string rating)
+        {
+            return Content($"{movieName} has a rating of {rating}");
+        }
+
         //Create a string html template for a form
         // with method of post
         // an input with name "movieName" 
