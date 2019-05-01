@@ -33,8 +33,7 @@ namespace CoderGirl_MVCMovies.Controllers
         public IActionResult Index()
         {
             //ViewBag.Movies = MovieController.movies;
-            //ViewBag.MovieRatings = Data.RepositoryFactory.GetMovieRatingRepository();
-            ViewBag.MovieRatings = repository.GetMovieRatings(); //THIS ALSO DOES NOT COMPLAINT. WHAT IS CORRECT ONE
+            ViewBag.MovieRatings = repository.GetMovieRatings();
             return View();
         }
 
@@ -45,6 +44,7 @@ namespace CoderGirl_MVCMovies.Controllers
         public IActionResult Create()
         {
             ViewBag.Movies = MovieController.movies;
+            //ViewBag.MovieRatings = repository.GetMovieRatings();
             return View();
         }
 
