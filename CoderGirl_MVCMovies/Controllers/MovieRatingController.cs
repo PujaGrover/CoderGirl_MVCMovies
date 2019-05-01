@@ -10,25 +10,31 @@ namespace CoderGirl_MVCMovies.Controllers
     public class MovieRatingController : Controller
     {
         private IMovieRatingRepository repository = RepositoryFactory.GetMovieRatingRepository();
-
-        private string htmlForm = @"
-            <form method='post'>
-                <input name='movieName' />
-                <select name='rating'>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>                    
-                </select>
-                <button type='submit'>Rate it</button>
-            </form>";
+        
+        public List<MovieRating> movieRatings = new List<MovieRating>();
+        //private static int movieRating_nextIdToUse = 1;
+        //private string htmlForm = @"
+        //    <form method='post'>
+        //        <label for='movieName'>Movie Name</label>
+        //        <input name='movieName' id='movieName' />
+        //        <select name='rating'>
+        //            <option>1</option>
+        //            <option>2</option>
+        //            <option>3</option>
+        //            <option>4</option>
+        //            <option>5</option>                    
+        //        </select>
+        //        <button type='submit'>Rate it</button>
+        //    </form>";
 
         /// TODO: Create a view Index. This view should list a table of all saved movie names with associated average rating
         /// TODO: Be sure to include headers for Movie and Rating
         /// TODO: Each tr with a movie rating should have an id attribute equal to the id of the movie rating
         public IActionResult Index()
         {
+            //ViewBag.Movies = MovieController.movies;
+            //ViewBag.MovieRatings = Data.RepositoryFactory.GetMovieRatingRepository();
+            ViewBag.MovieRatings = repository.GetMovieRatings(); //THIS ALSO DOES NOT COMPLAINT. WHAT IS CORRECT ONE
             return View();
         }
 
@@ -47,16 +53,30 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpPost]
         public IActionResult Create(string movieName, string rating)
         {
-            return RedirectToAction(actionName: nameof(Details), routeValues: new { movieName, rating });
+            int r = int.Parse(rating);
+            int movieIdToUse = repository.SaveRating(movieName, r);
+            
+            return RedirectToAction(actionName: nameof(Details), routeValues: new { movieIdToUse });
+            //return RedirectToAction(actionName: nameof(Details), routeValues: new { movieName, rating });
         }
 
         // TODO: The Details method should take an int parameter which is the id of the movie/rating to display.
         // TODO: Create a Details view which displays the formatted string with movie name and rating in an h2 tag. 
         // TODO: The Details view should include a link to the MovieRating/Index page
         [HttpGet]
+        public IActionResult Details(int movieIdToUse)
+        {
+            string content = $"{repository.GetMovieNameById(movieIdToUse)} has a rating of {repository.GetRatingById(movieIdToUse)}";
+            return View("Details", (object)content);
+            //return Content($"{repository.GetMovieNameById(movieIdToUse)} has a rating of {repository.GetRatingById(movieIdToUse)}");
+        }
+
+        [HttpGet]
         public IActionResult Details(string movieName, string rating)
         {
             return Content($"{movieName} has a rating of {rating}");
         }
+
+
     }
 }
