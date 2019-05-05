@@ -55,28 +55,23 @@ namespace CoderGirl_MVCMovies.Controllers
         {
             int r = int.Parse(rating);
             int movieIdToUse = repository.SaveRating(movieName, r);
-            
-            return RedirectToAction(actionName: nameof(Details), routeValues: new { movieIdToUse });
-            //return RedirectToAction(actionName: nameof(Details), routeValues: new { movieName, rating });
+
+            //return RedirectToAction(actionName: nameof(Details), routeValues: new { movieIdToUse });
+            return RedirectToAction(actionName: nameof(Details), routeValues: new { movieName, rating });
         }
 
         // TODO: The Details method should take an int parameter which is the id of the movie/rating to display.
         // TODO: Create a Details view which displays the formatted string with movie name and rating in an h2 tag. 
         // TODO: The Details view should include a link to the MovieRating/Index page
         [HttpGet]
-        public IActionResult Details(int movieIdToUse)
+        public IActionResult Details(string movieName, string rating)
         {
-            string content = $"{repository.GetMovieNameById(movieIdToUse)} has a rating of {repository.GetRatingById(movieIdToUse)}";
+            string content = $"{movieName} has a rating of {rating}";
             return View("Details", (object)content);
             //return Content($"{repository.GetMovieNameById(movieIdToUse)} has a rating of {repository.GetRatingById(movieIdToUse)}");
         }
 
-        //[HttpGet]
-        //public IActionResult Details(string movieName, string rating)
-        //{
-        //    return Content($"{movieName} has a rating of {rating}");
-        //}
-
+      
 
     }
 }
