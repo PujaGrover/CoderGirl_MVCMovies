@@ -71,11 +71,11 @@ namespace CoderGirl_MVCMovies.Controllers
             //return Content($"{repository.GetMovieNameById(movieIdToUse)} has a rating of {repository.GetRatingById(movieIdToUse)}");
         }
 
-        [HttpGet]
-        public IActionResult Details(string movieName, string rating)
-        {
-            return Content($"{movieName} has a rating of {rating}");
-        }
+        //[HttpGet]
+        //public IActionResult Details(string movieName, string rating)
+        //{
+        //    return Content($"{movieName} has a rating of {rating}");
+        //}
 
 
     }
