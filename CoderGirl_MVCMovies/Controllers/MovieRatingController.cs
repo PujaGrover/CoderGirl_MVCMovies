@@ -12,20 +12,6 @@ namespace CoderGirl_MVCMovies.Controllers
         private IMovieRatingRepository repository = RepositoryFactory.GetMovieRatingRepository();
         
         public List<MovieRating> movieRatings = new List<MovieRating>();
-        //private static int movieRating_nextIdToUse = 1;
-        //private string htmlForm = @"
-        //    <form method='post'>
-        //        <label for='movieName'>Movie Name</label>
-        //        <input name='movieName' id='movieName' />
-        //        <select name='rating'>
-        //            <option>1</option>
-        //            <option>2</option>
-        //            <option>3</option>
-        //            <option>4</option>
-        //            <option>5</option>                    
-        //        </select>
-        //        <button type='submit'>Rate it</button>
-        //    </form>";
 
         /// TODO: Create a view Index. This view should list a table of all saved movie names with associated average rating
         /// TODO: Be sure to include headers for Movie and Rating
@@ -55,8 +41,6 @@ namespace CoderGirl_MVCMovies.Controllers
         {
             int r = int.Parse(rating);
             int movieIdToUse = repository.SaveRating(movieName, r);
-
-            //return RedirectToAction(actionName: nameof(Details), routeValues: new { movieIdToUse });
             return RedirectToAction(actionName: nameof(Details), routeValues: new { movieName, rating });
         }
 
