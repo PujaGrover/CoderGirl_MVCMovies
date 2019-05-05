@@ -6,7 +6,7 @@ using CoderGirl_MVCMovies.Models;
 
 namespace CoderGirl_MVCMovies.Data
 {
-    public class MovieRepository : IMovieRepository
+    public class MovieRepository : IMovieRespository
     {
         static List<Movie> movies = new List<Movie>();
         static int nextId = 1;
@@ -30,7 +30,7 @@ namespace CoderGirl_MVCMovies.Data
         {
             movie.Id = nextId++;
             movies.Add(movie);
-            return movie.Id; 
+            return movie.Id;
         }
 
         public void Update(Movie movie)
