@@ -44,20 +44,6 @@ namespace CoderGirl_MVCMovies.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Movie movie)
-        {
-            movieRepository.Save(movie);
-            return RedirectToAction(actionName: nameof(Index));
-        }
-
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            Movie movie = movieRepository.GetById(id);
-            return View(movie);
-        }
-
-        [HttpPost]
         public IActionResult Edit(int id, Movie movie)
         {
             //since id is not part of the edit form, it isn't included in the model, thus it needs to be set from the route value
