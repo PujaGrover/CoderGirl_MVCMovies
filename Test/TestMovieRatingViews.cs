@@ -151,7 +151,7 @@ namespace Test
 
             //find row with same id and verify it is updated
             rows = driver.FindElementsByTagName("tr");
-            var updatedRow = rows.
+            var updatedRow = rows.;
 
         }
 

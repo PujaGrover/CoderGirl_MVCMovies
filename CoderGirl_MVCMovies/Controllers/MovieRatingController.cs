@@ -37,7 +37,8 @@ namespace CoderGirl_MVCMovies.Controllers
         {
             ViewBag.Movie = movieName;
             ViewBag.Rating = rating;
-            return View();
+            //return View(); THE OLD Command. THIS CAN BE DELETED WHEN THE ONE BELOW WORKS
+            return RedirectToAction(actionName: nameof(Index));
         }
     }
 }
