@@ -8,17 +8,13 @@
 
 <h4>MovieRating</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MovieName" class="control-label"></label>
-                <input readonly asp-for="MovieName" class="form-control" />
-                <span asp-validation-for="MovieName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
+
+        <form asp-action="Edit" method="post">
+                <label asp-for="MovieName" ></label>
+                <input readonly asp-for="MovieName"  />
+               
+           
+                <label asp-for="Rating" ></label>
                 <select id="Rating" name="Rating">
                     <option>1</option>
                     <option>2</option>
@@ -26,14 +22,9 @@
                     <option>4</option>
                     <option>5</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Update Rating" class="btn btn-primary" />
-            </div>
+           
+                <button type="submit">Update Rating</button>
         </form>
-    </div>
-</div>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

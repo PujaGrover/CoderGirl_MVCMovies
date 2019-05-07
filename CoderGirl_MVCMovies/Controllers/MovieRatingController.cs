@@ -46,7 +46,7 @@ namespace CoderGirl_MVCMovies.Controllers
         {
             movieRating.Id = id;
             movieRatingRepository.Update(movieRating);
-            return View(movieRating);
+            return RedirectToAction(actionName: nameof(Index));
         }
 
         [HttpGet]
