@@ -4,20 +4,17 @@
 }
 
 <h1>Movie Ratings</h1>
-<a asp-controller="MovieRating" asp-action="Create" id="add-movierating">Rate A Movie</a>
+<a asp-controller="MovieRating" asp-action="Create" id="add-movierating">Rate a Movie</a>
 <table>
     <tr>
-        <th>Movie</th><th></th><th>Rating</th>
+        <th>Movie</th><th>Rating</th>
     </tr>
     @foreach(var movieRating in Model)
     { 
     <tr>
         <td>@movieRating.MovieName</td>
-        <td></td>
         <td align="center">@movieRating.Rating</td>
-        <td></td>
         <td align="center"><a asp-controller="MovieRating" asp-action="Edit" asp-route-id="@movieRating.Id">Edit</a></td>
-        <td></td>
         <td align="center"><a asp-controller="MovieRating" asp-action="Delete" asp-route-id="@movieRating.Id">Delete</a></td>
     </tr>
     }
