@@ -19,21 +19,14 @@ namespace CoderGirl_MVCMovies.Data
 
         public Movie GetById(int id)
         {
-            //TODO: insert MovieRatings
             Movie movie = movies.SingleOrDefault(m => m.Id == id);
-            //List<int> ratings = ratingRepository.GetMovieRatings()
-            //    .Where(rating => rating.MovieId == id)
-            //    .Select(rating => rating.Rating).ToList();
-            //movie.MovieRatings = ratings;
+            movie = SetMovieRatings(movie);
             return movie;
         }
 
         public List<Movie> GetMovies()
         {
-            // TODO: FOREACH movie insert MRs
-            //movies.ForEach()  TRY THIS
-         
-            return movies.Select(movie => SetMovieRatings(movie)).ToList(); ;
+            return movies.Select(movie => SetMovieRatings(movie)).ToList();
         }
 
         
@@ -47,11 +40,6 @@ namespace CoderGirl_MVCMovies.Data
 
         public void Update(Movie movie)
         {
-            //there are many ways to accomplish this, this is just one possible way
-            //the upside is that it is relatively simple, 
-            //the (possible) downside is that it doesn't preserve the order in the list
-            //as the AC doesn't specify, I am going with the simpler solution
-            //once we start using the database this pattern will be simplified
             this.Delete(movie.Id);
             movies.Add(movie);
         }
