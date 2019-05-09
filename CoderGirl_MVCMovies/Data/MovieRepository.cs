@@ -29,6 +29,8 @@ namespace CoderGirl_MVCMovies.Data
             return movies.Select(movie => SetMovieRatings(movie)).ToList();
         }
 
+        
+
         public int Save(Movie movie)
         {
             movie.Id = nextId++;
