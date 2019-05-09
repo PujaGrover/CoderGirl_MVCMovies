@@ -10,6 +10,7 @@ namespace CoderGirl_MVCMovies.Data
     {
         static List<Movie> movies = new List<Movie>();
         static int nextId = 1;
+        static IMovieRatingRepository ratingRepository = RepositoryFactory.GetMovieRatingRepository();
 
         public void Delete(int id)
         {
@@ -18,13 +19,24 @@ namespace CoderGirl_MVCMovies.Data
 
         public Movie GetById(int id)
         {
-            return movies.SingleOrDefault(m => m.Id == id);
+            //TODO: insert MovieRatings
+            Movie movie = movies.SingleOrDefault(m => m.Id == id);
+            //List<int> ratings = ratingRepository.GetMovieRatings()
+            //    .Where(rating => rating.MovieId == id)
+            //    .Select(rating => rating.Rating).ToList();
+            //movie.MovieRatings = ratings;
+            return movie;
         }
 
         public List<Movie> GetMovies()
         {
-            return movies;
+            // TODO: FOREACH movie insert MRs
+            //movies.ForEach()  TRY THIS
+         
+            return movies.Select(movie => SetMovieRatings(movie)).ToList(); ;
         }
+
+        
 
         public int Save(Movie movie)
         {
@@ -42,6 +54,16 @@ namespace CoderGirl_MVCMovies.Data
             //once we start using the database this pattern will be simplified
             this.Delete(movie.Id);
             movies.Add(movie);
+        }
+
+        private Movie SetMovieRatings(Movie movie)
+        {
+            List<int> ratings = ratingRepository.GetMovieRatings()
+                                                .Where(rating => rating.MovieId == movie.Id)
+                                                .Select(rating => rating.Rating)
+                                                .ToList();
+            movie.Ratings = ratings;
+            return movie;
         }
     }
 }
