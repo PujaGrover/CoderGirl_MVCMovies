@@ -5,21 +5,26 @@
 }
 
 <h1>Movies</h1>
-<a asp-controller="Movie" asp-action="Create">Add New Movie</a>
+<a asp-controller="Movie" asp-action="Create" id="add-new-movie">Add New Movie</a>
 <table>
     <tr>
-        <th>Movie Name</th>
-        <th>Director</th>
-        <th>Year</th>
+        <th width="75px" align="center">Name</th>
+        <th  width="75px" align="center">Director</th>
+        <th  width="75px" align="center">Year</th>
+        <th  width="150px" align="center">Average Rating</th>
+        <th  width="150px" align="center">Number of Ratings</th>
     </tr>
     @foreach (var movie in Model)
     {
-    <tr>
-        <td>@movie.Name</td>
-        <td>@movie.Director</td>
-        <td>@movie.Year</td>
-        <td><a asp-controller="Movie" asp-action="Edit" asp-route-id="@movie.Id">Edit</a></td>
-        <td><a asp-controller="Movie" asp-action="Delete" asp-route-id="@movie.Id">Delete</a></td>
+    <tr id="@movie.Id">
+        <td width="75px" align="center">@movie.Name</td>
+        <td width="75px" align="center">@movie.Director</td>
+        <td width="75px" align="center">@movie.Year</td>
+        <td width="150px" align="center">@movie.AverageRating(movie.Ratings)</td>
+        <td width="150px" align="center">@movie.Ratings.Count</td>
+        <td width="75px"><a asp-controller="MovieRating" asp-action="Create(@movie.Id)" asp-route-id="@movie.Id">Rate</a></td>
+        <td width="75px"><a asp-controller="Movie" asp-action="Edit" asp-route-id="@movie.Id">Edit</a></td>
+        <td width="75px"><a asp-controller="Movie" asp-action="Delete" asp-route-id="@movie.Id">Delete</a></td>
     </tr>
     }
 </table>
