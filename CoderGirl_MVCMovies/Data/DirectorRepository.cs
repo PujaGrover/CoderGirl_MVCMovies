@@ -40,5 +40,11 @@ namespace CoderGirl_MVCMovies.Data
             this.Delete(director.Id);
             directors.Add(director);
         }
+
+        //public string Name(Director director)
+        //{
+        //    return $"{director.LastName} + {" "} + {director.FirstName}";
+        //}
+
     }
 }
