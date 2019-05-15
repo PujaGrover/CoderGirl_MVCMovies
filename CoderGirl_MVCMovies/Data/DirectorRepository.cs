@@ -41,10 +41,10 @@ namespace CoderGirl_MVCMovies.Data
             directors.Add(director);
         }
 
-        public string Name(Director director)
-        {
-            return $"{director.LastName} + {" "} + {director.FirstName}";
-        }
+        //public string DirectorName(Director director)
+        //{
+        //    return $"{director.LastName} + {" "} + {director.FirstName}";
+        //}
 
     }
 }
