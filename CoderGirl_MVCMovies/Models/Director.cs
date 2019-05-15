@@ -14,10 +14,19 @@ namespace CoderGirl_MVCMovies.Models
         public string Nationality { get; set; }
 
     }
+    
 
-    //public string Name(string LastName, string FirstName)
+    //private DateTime birthDate;
+    //public DateTime BirthDate
     //{
-    //    return $"{LastName} + {" "} + {FirstName}";
+    //    get
+    //    {
+    //        return birthDate.Date;
+    //    }
+    //    set
+    //    {
+    //        birthDate = value;
+    //    }
     //}
 
 }

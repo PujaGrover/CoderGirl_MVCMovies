@@ -20,12 +20,17 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+
             return View();
         }
 
         [HttpPost]
         public IActionResult Create(Director director)
         {
+            //TRYING TO EXTRACT ONLY DATE FROM DATETIME
+            //List<Director> directors = directorRepository.GetDirectors();
+            //directors.Select(d => d.BirthDate.Date);
+           
             directorRepository.Save(director);
             return RedirectToAction(actionName: nameof(Index));
         }

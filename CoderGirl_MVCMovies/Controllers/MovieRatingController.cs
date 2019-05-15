@@ -37,7 +37,8 @@ namespace CoderGirl_MVCMovies.Controllers
         public IActionResult Create(int Id)
         {
             //ratingRepository.Save(movieRating);
-            return RedirectToAction("Index(Id)","Movie");
+            //return RedirectToAction("Index(Id)","Movie");
+            return RedirectToAction(actionName: nameof(Index), controllerName: "Movie");
         }
 
         [HttpGet]
