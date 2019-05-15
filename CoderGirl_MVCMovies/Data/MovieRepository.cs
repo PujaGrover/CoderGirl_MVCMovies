@@ -53,6 +53,7 @@ namespace CoderGirl_MVCMovies.Data
             movie.Ratings = ratings;
             return movie;
         }
+
         //public double AverageRating(List<int> ratings)
         //{
         //    double averageRating = ratings.Average();
