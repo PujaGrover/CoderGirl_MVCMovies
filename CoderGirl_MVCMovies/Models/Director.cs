@@ -13,20 +13,10 @@ namespace CoderGirl_MVCMovies.Models
         public DateTime BirthDate { get; set; }
         public string Nationality { get; set; }
 
+        public string DirectorName()
+        {
+            return $"{LastName} + {" "} + {FirstName}";
+        }
+
     }
-    
-
-    //private DateTime birthDate;
-    //public DateTime BirthDate
-    //{
-    //    get
-    //    {
-    //        return birthDate.Date;
-    //    }
-    //    set
-    //    {
-    //        birthDate = value;
-    //    }
-    //}
-
 }
