@@ -10,7 +10,7 @@ namespace CoderGirl_MVCMovies.Data
     {
         static List<Director> directors = new List<Director>();
         static int nextId = 1;
-        static IDirectorRepository directorRepository = RepositoryFactory.GetDirectorRepository();
+
 
         public void Delete(int id)
         {
@@ -40,11 +40,5 @@ namespace CoderGirl_MVCMovies.Data
             this.Delete(director.Id);
             directors.Add(director);
         }
-
-        //public string DirectorName(Director director)
-        //{
-        //    return $"{director.LastName} + {" "} + {director.FirstName}";
-        //}
-
     }
 }
