@@ -13,10 +13,9 @@ namespace CoderGirl_MVCMovies.Models
         public DateTime BirthDate { get; set; }
         public string Nationality { get; set; }
 
-        public string DirectorName()
+        public string FullName
         {
-            return $"{LastName} + {" "} + {FirstName}";
+            get { return $"{LastName}, {FirstName}"; }
         }
-
     }
 }

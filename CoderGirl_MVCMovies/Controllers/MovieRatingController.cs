@@ -22,24 +22,34 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.MovieNames = movieRespository.GetMovies().Select(m => m.Name + m.Id).ToList();
+            ViewBag.MovieNames = movieRespository.GetMovies().Select(m => m.Name).ToList();
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult Create(MovieRating movieRating)
+        [HttpPost]
+        public IActionResult Create(MovieRating movieRating)
+        {
+            ratingRepository.Save(movieRating);
+            return RedirectToAction(actionName: nameof(Index));
+        }
+
+        //[HttpGet]
+        //public IActionResult Create(int movieId)
         //{
-        //    ratingRepository.Save(movieRating);
-        //    return RedirectToAction(actionName: nameof(Index));
+        //    string movieName = movieRespository.GetById(movieId).Name;
+        //    MovieRating movieRating = new MovieRating();
+        //    movieRating.MovieId = movieId;
+        //    movieRating.MovieName = movieName;
+        //    return View(movieRating);
         //}
 
-        [HttpPost]
-        public IActionResult Create(int Id)
-        {
-            //ratingRepository.Save(movieRating);
-            //return RedirectToAction("Index(Id)","Movie");
-            return RedirectToAction(actionName: nameof(Index), controllerName: "Movie");
-        }
+
+        //[HttpPost]
+        //public IActionResult Create(int movieId, MovieRating movieRating)
+        //{
+        //    ratingRepository.Save(movieRating);
+        //    return RedirectToAction(controllerName: nameof(Movie), actionName: nameof(Index));
+        //}
 
         [HttpGet]
         public IActionResult Edit(int id)
