@@ -9,18 +9,18 @@
 <a asp-controller="Movie" asp-action="Create" id="add-new-movie">Add New Movie</a>
 <table>
     <tr>
-        <th width="75px" align="center">Movie Name</th>
-        <th width="75px" align="center">Director</th>
-        <th width="75px" align="center">Year</th>
-        <th width="150px" align="center">Average Rating</th>
-        <th width="150px" align="center">Number of Ratings</th>
+        <th width="150px" align="left">Movie Name</th>
+        <th width="75px" align="left">Director</th>
+        <th width="75px" align="left">Year</th>
+        <th width="150px" align="left">Average Rating</th>
+        <th width="150px" align="left">Number of Ratings</th>
     </tr>
     @foreach (var movie in Model)
     {
         <tr id="@movie.Id">
-            <td width="75px" align="center">@movie.Name</td>
-            <td width="75px" align="center">@movie.DirectorName</td>
-            <td width="75px" align="center">@movie.Year</td>
+            <td width="150px" align="left">@movie.Name</td>
+            <td width="75px" align="left">@movie.DirectorName</td>
+            <td width="75px" align="left">@movie.Year</td>
             @*<td width="150px" align="center">@movie.AverageRating(movie.Ratings)</td>*@
             @if (movie.Ratings.Count > 0)
             {
@@ -30,9 +30,8 @@
             {
                 <td> none </td>
             }
-            <td width="150px" align="center">@movie.Ratings.Count</td>
-            <td width="75px"><a asp-controller="MovieRating" asp-action="Create(movieId)
-                                " asp-route-movieId="@movie.Id">Rate</a></td>
+            <td width="150px" align="left">@movie.Ratings.Count</td>
+            <td width="75px"><a asp-controller="MovieRating" asp-action="Create" asp-route-movieId="@movie.Id">Rate</a></td>
             <td width="75px"><a asp-controller="Movie" asp-action="Edit" asp-route-id="@movie.Id">Edit</a></td>
             <td width="75px"><a asp-controller="Movie" asp-action="Delete" asp-route-id="@movie.Id">Delete</a></td>
         </tr>
