@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CoderGirl_MVCMovies.Models
 {
-    public class Director
+    public class Director : IModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -17,5 +17,6 @@ namespace CoderGirl_MVCMovies.Models
             get { return $"{LastName}, {FirstName}"; }
         }
 
+        //public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
