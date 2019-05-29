@@ -51,8 +51,8 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Movie movie = movieRepository.GetById(id);
-            return View(movie);
+             Movie movie = (Movie)movieRepository.GetById(id);
+             return View(movie);
         }
 
         [HttpPost]

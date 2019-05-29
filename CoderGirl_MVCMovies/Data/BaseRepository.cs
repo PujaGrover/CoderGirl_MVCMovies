@@ -11,6 +11,14 @@ namespace CoderGirl_MVCMovies.Data
         protected List<IModel> models = new List<IModel>();
         protected static int nextId = 1;
 
+        //public BaseRepository()
+        //{
+        //    Director director = new Director();
+        //    director.LastName = "LAst";
+        //    director.Id = 5;
+        //    models.Add(director);
+        //}
+
         public void Delete(int id)
         {
             models.RemoveAll(d => d.Id == id);

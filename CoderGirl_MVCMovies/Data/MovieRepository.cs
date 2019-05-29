@@ -10,24 +10,29 @@ namespace CoderGirl_MVCMovies.Data
     {
         static IRepository ratingRepository = RepositoryFactory.GetMovieRatingRepository();
         static IRepository directorRepository = RepositoryFactory.GetDirectorRepository();
+        static IRepository movieRepository = RepositoryFactory.GetMovieRepository();
 
         public override IModel GetById(int id)
         {
             Movie movie = (Movie)base.GetById(id);
-            movie = SetMovieRatings(movie);
-            movie = SetDirectorName(movie);
+            //movie = SetMovieRatings(movie);
+            //movie = SetDirectorName(movie);
             return movie;
         }
 
         public override List<IModel> GetModels()
         {
-            return models.Select(movie => SetMovieRatings(movie))
-                .Select(movie => SetDirectorName(movie)).ToList();
+            List<Movie> movies = models.OfType<Movie>().Select(movie => SetMovieRatings(movie))
+                                .Select(movie => SetDirectorName(movie)).ToList();
+            List<IModel> moviesCastedAsIModel = movies.Cast<IModel>().ToList();
+
+            return moviesCastedAsIModel;
+
         }
-       
+
         private Movie SetMovieRatings(Movie movie)
         {
-            List<int> ratings = ratingRepository.GetMovieRatings()
+            List<int> ratings = ratingRepository.GetModels().Cast<MovieRating>()
                                                 .Where(rating => rating.MovieId == movie.Id)
                                                 .Select(rating => rating.Rating)
                                                 .ToList();
@@ -37,7 +42,7 @@ namespace CoderGirl_MVCMovies.Data
 
         private Movie SetDirectorName(Movie movie)
         {
-            Director director = directorRepository.GetById(movie.DirectorId);
+            Director director = (Director)directorRepository.GetById(movie.DirectorId);
             movie.DirectorName = director.FullName;
             return movie;
         }
