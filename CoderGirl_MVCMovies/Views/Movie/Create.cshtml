@@ -1,7 +1,7 @@
-﻿@model CoderGirl_MVCMovies.ViewModel.Movie.MovieCreateViewModel
+﻿@model CoderGirl_MVCMovies.ViewModels.Movies.MovieCreateViewModel
 
 @{
-    ViewData["Title"] = "CreateView";
+    ViewData["Title"] = "Create";
 }
 
 <h1>CreateView</h1>
@@ -22,7 +22,7 @@
                 <select asp-for="DirectorId">
                     @foreach (var director in Model.Directors)
                     {
-                        <options value="@director.Id">@director.FullName></options>
+                        <option value="@director.Id">@director.FullName></option>
 
 
                     }

@@ -2,6 +2,7 @@
 using CoderGirl_MVCMovies.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,24 +10,15 @@ namespace CoderGirl_MVCMovies.ViewModels.Movies
 {
     public class MovieCreateViewModel
     {
-        public static MovieCreateViewModel GetMovieCreateViewModel()
-        {
-            List<Director> directors = RepositoryFactory.GetDirectorRepository()
-                .GetModels()
-                .Cast<Director>()
-                .ToList();
-            return new MovieCreateViewModel(directors);
-        }
-
-
+        [Required(ErrorMessage = "Name must be included")]
         public string Name { get; set; }
         public int DirectorId { get; set; }
         public List<Director> Directors { get; set; }
         public int Year { get; set; }
 
-        private MovieCreateViewModel(List<Director> directors)
+        public MovieCreateViewModel()
         {
-            this.Directors = directors;
+            Directors = GetDirectors();
         }
 
         public void Persist()
@@ -38,6 +30,14 @@ namespace CoderGirl_MVCMovies.ViewModels.Movies
                 Year = this.Year
             };
             RepositoryFactory.GetMovieRepository().Save(movie);
+        }
+
+        private static List<Director> GetDirectors()
+        {
+            return RepositoryFactory.GetDirectorRepository()
+                .GetModels()
+                .Cast<Director>()
+                .ToList();
         }
     }
 }
