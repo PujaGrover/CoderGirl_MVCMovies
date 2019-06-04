@@ -14,13 +14,7 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRatings
         public int Rating { get; set; }
         public int MovieId { get; set; }
 
-        //MovieRating Conroller Create Action Method
-        //var movie = (Movie)movieRespository.GetById(movieId);
-        //string movieName = movie.Name;
-        //MovieRating movieRating = new MovieRating();
-        //movieRating.MovieId = movieId;
-        //    movieRating.MovieName = movieName;
-            //return View(movieRating);
+
 
         public static MovieRatingCreateViewModel GetModel(int movieId)
         {
@@ -36,14 +30,6 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRatings
                 MovieName = movieRating.MovieName
             };
         }
-
-        //private MovieRatingCreateViewModel GetMovieRatingCreateViewModel(MovieRating movieRating)
-        //{
-        //    movieRating.MovieId = this.MovieId;
-        //    movieRating.MovieName = this.MovieName;
-
-        //    return movieRating;
-        //}
 
         public void Persist()
         {

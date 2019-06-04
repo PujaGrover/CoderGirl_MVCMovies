@@ -44,15 +44,14 @@ namespace CoderGirl_MVCMovies.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            MovieRating movieRating = (MovieRating)ratingRepository.GetById(id);
-            return View(movieRating);
+            MovieRatingEditViewModel model = MovieRatingEditViewModel.GetModel(id);
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, MovieRating movieRating)
+        public IActionResult Edit(int id, MovieRatingEditViewModel model)
         {
-            movieRating.Id = id;
-            ratingRepository.Update(movieRating);
+            model.Persist(id);
             return RedirectToAction(actionName: nameof(Index));
         }
 
