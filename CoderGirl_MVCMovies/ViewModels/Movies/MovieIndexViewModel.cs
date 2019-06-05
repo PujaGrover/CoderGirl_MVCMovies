@@ -15,6 +15,21 @@ namespace CoderGirl_MVCMovies.ViewModels.Movies
         public int  DirectorId  { get; set; }
         public string DirectorName { get; set; }
         public List<int> Ratings { get; set; }
+        //public double AverageRating
+        //{
+        //    get {if (Ratings.Count > 0)
+        //        {
+        //            return Ratings.Average();
+        //        }
+        //        else return 0;
+        //    }
+        //    set {; }
+        //}
+        //public int NumberOfRatings
+        //{
+        //    get {return Ratings.Count; }
+        //    set {; }
+        //}
 
         public static List<MovieIndexViewModel> GetMovieList()
         {

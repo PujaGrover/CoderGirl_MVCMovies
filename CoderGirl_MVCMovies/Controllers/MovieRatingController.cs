@@ -34,6 +34,7 @@ namespace CoderGirl_MVCMovies.Controllers
             return View(model);
         }
 
+
         [HttpPost]
         public IActionResult Create(int movieId, MovieRatingCreateViewModel model)
         {

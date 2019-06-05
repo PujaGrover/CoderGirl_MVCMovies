@@ -23,11 +23,13 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRatings
             MovieRating movieRating = new MovieRating();
             movieRating.MovieId = movieId;
             movieRating.MovieName = movieName;
+            movieRating.Rating = 1;
 
             return new MovieRatingCreateViewModel
             {
                 MovieId = movieRating.MovieId,
-                MovieName = movieRating.MovieName
+                MovieName = movieRating.MovieName,
+                Rating = movieRating.Rating
             };
         }
 

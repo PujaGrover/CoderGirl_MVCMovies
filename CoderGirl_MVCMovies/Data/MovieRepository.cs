@@ -26,21 +26,43 @@ namespace CoderGirl_MVCMovies.Data
                 .Select(movie => SetMovieRatings(movie))
                 .Select(movie => movie as IModel).ToList();
         }
-       
+
         private Movie SetMovieRatings(Movie movie)
         {
-            List<int> ratings = ratingRepository.GetModels().Cast<MovieRating>()
-                                                .Where(rating => rating.MovieId == movie.Id)
-                                                .Select(rating => rating.Rating)
-                                                .ToList();
-            movie.Ratings = ratings;
+            if (movie != null)
+            {
+                List<int> ratings = ratingRepository.GetModels().Cast<MovieRating>()
+                                                  .Where(rating => rating.MovieId == movie.Id)
+                                                  .Select(rating => rating.Rating)
+                                                  .ToList();
+                movie.Ratings = ratings;
+            }
+            else
+            {
+                //List<Movie> movies = RepositoryFactory.GetMovieRepository()
+                //    .GetModels().Cast<Movie>().ToList();
+
+                //foreach (Movie mov in movies)
+                //{
+                //    List<int> ratings = ratingRepository.GetModels().Cast<MovieRating>()
+                //                  .Where(rating => rating.MovieId == mov.Id)
+                //                  .Select(rating => rating.Rating)
+                //                  .ToList();
+                //    movie.Ratings = ratings;
+                //}
+            }
+
             return movie;
         }
 
+
         private Movie SetDirectorName(Movie movie)
         {
-            Director director = (Director)directorRepository.GetById(movie.DirectorId);
-            movie.DirectorName = director.FullName;
+            if (movie != null)
+            {
+                Director director = (Director)directorRepository.GetById(movie.DirectorId);
+                movie.DirectorName = director.FullName;
+                    };
             return movie;
         }
     }
