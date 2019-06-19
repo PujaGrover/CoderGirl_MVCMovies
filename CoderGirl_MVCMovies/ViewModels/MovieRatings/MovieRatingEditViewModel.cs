@@ -20,7 +20,7 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRatings
             return new MovieRatingEditViewModel
             {
                 Id = movieRating.Id,
-                MovieName = movieRating.MovieName,
+                //MovieName = movieRating.MovieName,
                 MovieId = movieRating.MovieId,
                 Rating = movieRating.Rating
             };
@@ -31,7 +31,7 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRatings
             MovieRating movieRating = new MovieRating
             {
                 Id = id,
-                MovieName = this.MovieName,
+                //MovieName = this.MovieName,
                 MovieId = this.MovieId,
                 Rating = this.Rating
             };

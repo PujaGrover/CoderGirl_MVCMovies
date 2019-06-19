@@ -22,13 +22,14 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRatings
             string movieName = movie.Name;
             MovieRating movieRating = new MovieRating();
             movieRating.MovieId = movieId;
-            movieRating.MovieName = movieName;
+           // movieRating.MovieName = movieName;
             movieRating.Rating = 1;
 
             return new MovieRatingCreateViewModel
             {
                 MovieId = movieRating.MovieId,
-                MovieName = movieRating.MovieName,
+                MovieName = movieName,
+                //MovieName = movieRating.MovieName,
                 Rating = movieRating.Rating
             };
         }
@@ -38,7 +39,7 @@ namespace CoderGirl_MVCMovies.ViewModels.MovieRatings
             MovieRating movieRating = new MovieRating
             {
                 Id = this.Id,
-                MovieName = this.MovieName,
+                //MovieName = this.MovieName,
                 Rating = this.Rating,
                 MovieId = this.MovieId
             };
