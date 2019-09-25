@@ -1,5 +1,7 @@
 ﻿using CoderGirl_MVCMovies.Data;
 using CoderGirl_MVCMovies.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,25 +15,25 @@ namespace CoderGirl_MVCMovies.ViewModels.Movies
 
         public string Name { get; set; }
         public int DirectorId { get; set; }
-        public List<Director> Directors { get; set; }
+        public SelectList Directors { get; set; }
         public int Year { get; set; }
+
+        public MovieEditViewModel() { }
 
         public MovieEditViewModel(RepositoryFactory repositoryFactory)
         {
-            this.Directors = GetDirectorList();
-            this.repositoryFactory = repositoryFactory;
+            this.Directors = GetDirectorList(repositoryFactory);
         }
 
         public MovieEditViewModel(int id)
         {
             Movie movie=repositoryFactory.GetMovieRepository().GetById(id);
-            this.DirectorId = movie.DirectorId;
+            this.DirectorId = movie.Director.Id;
             this.Year = movie.Year;
             this.Name = movie.Name;
-            this.Directors = GetDirectorList();
         }
 
-        public void Persist(int id)
+        public void Persist(int id, RepositoryFactory repositoryFactory)
         {
             Models.Movie movie = new Models.Movie
             {
@@ -43,10 +45,16 @@ namespace CoderGirl_MVCMovies.ViewModels.Movies
             repositoryFactory.GetMovieRepository().Save(movie);
         }
 
-        private List<Director> GetDirectorList()
+        public void ResetDirectorList(RepositoryFactory repositoryFactory)
         {
-            return repositoryFactory.GetDirectorRepository()
+            GetDirectorList(repositoryFactory);
+        }
+
+        private SelectList GetDirectorList(RepositoryFactory repositoryFactory)
+        {
+            var directors = repositoryFactory.GetDirectorRepository()
                 .GetModels();
+            return new SelectList(directors, "Id", "FullName", this.DirectorId);
         }
     }
 }

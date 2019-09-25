@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using CoderGirl_MVCMovies.Data;
 using Microsoft.AspNetCore.Builder;
@@ -33,8 +34,9 @@ namespace CoderGirl_MVCMovies
             });
 
             services.AddDbContext<MoviesDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseLazyLoadingProxies()
+                        .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddScoped<RepositoryFactory>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
